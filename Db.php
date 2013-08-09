@@ -15,8 +15,8 @@
 // Database information
 $mdldatabase    = 'moodle';
 $mdldbHost      = 'localhost';
-$mdldbUser      = 'moodle';
-$mdldbPass      = 'moodle';
+$mdldbUser      = 'root';
+$mdldbPass      = 'npsingh1';
 $mdlconnection  = mysql_connect ($mdldbHost, $mdldbUser, $mdldbPass);
 mysql_select_db ($mdldatabase, $mdlconnection);
 

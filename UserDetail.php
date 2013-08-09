@@ -23,8 +23,11 @@ $Ques_Process_Obj = new Ques_Processor();
 //static data			
 $userId='6';
 $quizId='2';
-
-//Calling functions
+$userString='4-a b c a';	//mobile text
+list($quizId, $userAns) = explode("-",$userString);	//explosion of quizId & userAns 
+echo $quizId."<br/>";
+print_r($userAns);
+///Calling functions
 $surveyId      = $Ques_Process_Obj -> createColumn($quizId, $quizTable, $quesAnsTable, $userId, $userAns);
-
+*/
 ?>
