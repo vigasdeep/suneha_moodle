@@ -21,13 +21,15 @@ require_once 'QuesProcess.php';
 $Ques_Process_Obj = new Ques_Processor();
 
 //static data			
-$userId='6';
+$userId='9';
 $quizId='2';
-$userString='4-a b c a';	//mobile text
-list($quizId, $userAns) = explode("-",$userString);	//explosion of quizId & userAns 
-echo $quizId."<br/>";
-print_r($userAns);
+$userAns='a a a';
+
+//Calling functions
+//$userString='4-a b c a';	//mobile text
+//list($quizId, $userAns) = explode("-",$userString);	//explosion of quizId & userAns 
+
+
 ///Calling functions
-$surveyId      = $Ques_Process_Obj -> createColumn($quizId, $quizTable, $quesAnsTable, $userId, $userAns);
-*/
+$surveyId      = $Ques_Process_Obj -> createColumn($quizId, $quizTable, $quesAnsTable, $userId, $userAns, $quesUsageTable,$quesAttemptTable,$quesTable, $quesAtmptStpTable, $quizAttemptTable, $quizGradeTable );
 ?>
