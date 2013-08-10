@@ -67,7 +67,7 @@ class Ques_Processor
 
 				$slctAttmptId = mysql_fetch_array(mysql_query("SELECT id from $quesAttemptTable Order By id DESC LIMIT 1"));
 				$ftchAttmptId = $slctAttmptId['id'];  
-				$addAttmptStp = mysql_query("INSERT INTO m_question_attempt_steps(`questionattemptid`, `sequencenumber`, `state`, `fraction`, `timecreated`, `userid`) VALUES ('$ftchAttmptId', 2, 'gradedright', '1.0000000', '1376133652' ,'$userId')");
+				$addAttmptStp = mysql_query("INSERT INTO $quesAtmptStpTable(`questionattemptid`, `sequencenumber`, `state`, `fraction`, `timecreated`, `userid`) VALUES ('$ftchAttmptId', 2, 'gradedright', '1.0000000', '1376133652' ,'$userId')");
 				$m++;
 				$calmark = $m;
 				$calgrade = $calmark / 10;
@@ -80,16 +80,16 @@ class Ques_Processor
          VALUES ('$ftchUsageId', '$slot','deferredfeedback', '$val','1','1.0000000','0.0000000','0','$fetchQuesSumry','$riteAns','ef','1376133652')");
 				$slctAttmptId = mysql_fetch_array(mysql_query("SELECT id from $quesAttemptTable Order By id DESC LIMIT 1"));
 				$ftchAttmptId = $slctAttmptId['id']; 
-				$addAttmptStp = mysql_query("INSERT INTO `m_question_attempt_steps` (`questionattemptid`, `sequencenumber`, `state`, `fraction`, `timecreated`,`userid`) VALUES
+				$addAttmptStp = mysql_query("INSERT INTO `$quesAtmptStpTable` (`questionattemptid`, `sequencenumber`, `state`, `fraction`, `timecreated`,`userid`) VALUES
 ('$ftchAttmptId', 2, 'gradedwrong', '0.0000000', '1376133652', '$userId')");
 				}
 				$quesAnsRow=0;
 				$ansCounter++;	
 		}
-		$insrtQuizAtmpt = mysql_query("INSERT INTO `m_quiz_attempts` ( `quiz`, `userid`, `attempt`, `uniqueid`, `layout`, `currentpage`, `preview`, `state`, `timestart`, `timefinish`, `timemodified`, `timecheckstate`, `sumgrades`, `needsupgradetonewqe`) VALUES
+		$insrtQuizAtmpt = mysql_query("INSERT INTO `$quizAttemptTable` ( `quiz`, `userid`, `attempt`, `uniqueid`, `layout`, `currentpage`, `preview`, `state`, `timestart`, `timefinish`, `timemodified`, `timecheckstate`, `sumgrades`, `needsupgradetonewqe`) VALUES
 ( $quizId, $userId, 1, $ftchUsageId, '1,2,3,4,0', 1, 0, 'finished', 1375792791, 1375792820, 1375792820, NULL, $percentage, 0)");
-$insrtgrade = mysql_query("INSERT INTO `m_quiz_grades`(quiz,userid,grade,timemodified) VALUES ($quizId,$userId,$percentage, 1376133652)");
-echo "INSERT INTO `m_quiz_grades`(quiz,userid,grade,timemodified) VALUES ($quizId,$userId,$percentage, 1376133652)";
+$insrtgrade = mysql_query("INSERT INTO `$quizGradeTable`(quiz,userid,grade,timemodified) VALUES ($quizId,$userId,$percentage, 1376133652)");
+echo "INSERT INTO `$quizGradeTable`(quiz,userid,grade,timemodified) VALUES ($quizId,$userId,$percentage, 1376133652)";
 }
 }
 ?>
