@@ -18,6 +18,8 @@ class Ques_Processor
         $slctUsageId = mysql_fetch_array(mysql_query("SELECT id from $quesUsageTable Order By id DESC LIMIT 1"));
         $ftchUsageId = $slctUsageId['id'];
         $slot = 0;
+        $layout= "1";
+        $layoutCounter = 1;
 		foreach($quesExplode as $val)
         {
             if($val == 0)    
@@ -49,7 +51,7 @@ class Ques_Processor
 				$i = 4;
 				break;
 			}
-			$riteAns = "bonga";
+			$riteAns = "Some answer";
 				$fetchQuesSumry = $selectQuesSumry['questiontext'];
 			$selectQuesSumry = mysql_fetch_array(mysql_query("SELECT 'questiontext' from $quesTable WHERE id=$val"));
 				$fetchQuesSumry = $selectQuesSumry['questiontext'];
@@ -84,10 +86,13 @@ class Ques_Processor
 ('$ftchAttmptId', 2, 'gradedwrong', '0.0000000', '1376133652', '$userId')");
 				}
 				$quesAnsRow=0;
-				$ansCounter++;	
-		}
+                $ansCounter++;	
+                $layoutCounter++;
+                $layout .= ",".$layoutCounter;
+        }
+        $layout = substr($layout, 0, -2);
 		$insrtQuizAtmpt = mysql_query("INSERT INTO `$quizAttemptTable` ( `quiz`, `userid`, `attempt`, `uniqueid`, `layout`, `currentpage`, `preview`, `state`, `timestart`, `timefinish`, `timemodified`, `timecheckstate`, `sumgrades`, `needsupgradetonewqe`) VALUES
-( $quizId, $userId, 1, $ftchUsageId, '1,2,3,4,0', 1, 0, 'finished', 1375792791, 1375792820, 1375792820, NULL, $percentage, 0)");
+( $quizId, $userId, 1, $ftchUsageId, '$layout', 1, 0, 'finished', 1375792791, 1375792820, 1375792820, NULL, $percentage, 0)");
 $insrtgrade = mysql_query("INSERT INTO `$quizGradeTable`(quiz,userid,grade,timemodified) VALUES ($quizId,$userId,$percentage, 1376133652)");
 echo "INSERT INTO `$quizGradeTable`(quiz,userid,grade,timemodified) VALUES ($quizId,$userId,$percentage, 1376133652)";
 }

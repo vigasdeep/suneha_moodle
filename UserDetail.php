@@ -21,9 +21,9 @@ require_once 'QuesProcess.php';
 $Ques_Process_Obj = new Ques_Processor();
 
 //static data			
-$userId='9';
+$userId='8';
 $quizId='2';
-$userAns='a a a';
+$userAns='a b a';
 
 //Calling functions
 //$userString='4-a b c a';	//mobile text
